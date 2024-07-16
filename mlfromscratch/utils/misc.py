@@ -25,7 +25,7 @@ class Plot():
         idx = eigenvalues.argsort()[::-1]
         eigenvalues = eigenvalues[idx][:dim]
         eigenvectors = np.atleast_1d(eigenvectors[:, idx])[:, :dim]
-        # Project the data onto principal components
+        # Project the data onto principal components 主成分分析 https://blog.csdn.net/u010886217/article/details/86383249
         X_transformed = X.dot(eigenvectors)
 
         return X_transformed
