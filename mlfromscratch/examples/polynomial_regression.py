@@ -24,19 +24,19 @@ def main():
     poly_degree = 15
 
     # Finding regularization constant using cross validation
-    lowest_error = float("inf")
+    lowest_error = float("inf")# 无穷大 https://blog.csdn.net/Orange_hhh/article/details/132168232
     best_reg_factor = None
     print ("Finding regularization constant using cross validation:")
     k = 10
     for reg_factor in np.arange(0, 0.1, 0.01):
         cross_validation_sets = k_fold_cross_validation_sets(
-            X_train, y_train, k=k)
+            X_train, y_train, k=k)# K-折交叉验证（K-Fold Cross-Validation），注意返回值
         mse = 0
         for _X_train, _X_test, _y_train, _y_test in cross_validation_sets:
             model = PolynomialRidgeRegression(degree=poly_degree, 
                                             reg_factor=reg_factor,
                                             learning_rate=0.001,
-                                            n_iterations=10000)
+                                            n_iterations=10000)#这是一个类，用到了类的继承，https://www.cnblogs.com/bigberg/p/7182741.html
             model.fit(_X_train, _y_train)
             y_pred = model.predict(_X_test)
             _mse = mean_squared_error(_y_test, y_pred)
