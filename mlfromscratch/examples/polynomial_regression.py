@@ -11,9 +11,9 @@ from mlfromscratch.utils import train_test_split, polynomial_features, Plot
 def main():
 
     # Load temperature data
-    data = pd.read_csv('mlfromscratch/data/TempLinkoping2016.txt', sep="\t")
+    data = pd.read_csv('mlfromscratch/data/TempLinkoping2016.txt', sep="\t") # 参数可以很多，https://blog.csdn.net/weixin_42830697/article/details/128717371
 
-    time = np.atleast_2d(data["time"].values).T
+    time = np.atleast_2d(data["time"].values).T #先转为二维数组，然后进行转置，numpy只负责将数据转为可处理的格式
     temp = data["temp"].values
 
     X = time # fraction of the year [0, 1]
