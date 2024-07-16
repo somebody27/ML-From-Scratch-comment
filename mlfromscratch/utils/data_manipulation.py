@@ -8,9 +8,10 @@ import sys
 def shuffle_data(X, y, seed=None):
     """ Random shuffle of the samples in X and y """
     if seed:
-        np.random.seed(seed)
-    idx = np.arange(X.shape[0])
-    np.random.shuffle(idx)
+        np.random.seed(seed) #seed的默认参数是None，也就是说不设置的话每次相同的方法产生的结果都是不同的。
+        # https://blog.csdn.net/Muyan_Donny/article/details/81083786
+    idx = np.arange(X.shape[0])# 用于生成等差数组，https://wenku.csdn.net/answer/6ty977e4st
+    np.random.shuffle(idx)# idx 现在已经乱序？https://mp.weixin.qq.com/s?__biz=MzI5MTQ5NDY1MA==&mid=2247486827&idx=1&sn=a6a5c0e3de4cd96b1b9a73c726acf298&chksm=ec0e82fedb790be8763193b18762c12d8324bfc9d92db210be78b93790a74aa934daaef335f5&scene=27
     return X[idx], y[idx]
 
 
@@ -104,10 +105,10 @@ def standardize(X):
 def train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
     """ Split the data into train and test sets """
     if shuffle:
-        X, y = shuffle_data(X, y, seed)
+        X, y = shuffle_data(X, y, seed)#把数据打乱
     # Split the training data from test data in the ratio specified in
     # test_size
-    split_i = len(y) - int(len(y) // (1 / test_size))
+    split_i = len(y) - int(len(y) // (1 / test_size))#// 代表整数除法 https://zhuanlan.zhihu.com/p/267261317
     X_train, X_test = X[:split_i], X[split_i:]
     y_train, y_test = y[:split_i], y[split_i:]
 
